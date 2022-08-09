@@ -36,9 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'playground',
+    'django.contrib.sites',
+    'django.contrib.sessions',
+    'helpdesk.apps.helpdeskConfig',
     'debug_toolbar',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,7 +93,6 @@ DATABASES = {
         'PASSWORD' : '!!!Yman123!!!',
         'HOST': '127.0.0.1',
         'PORT' : '6603'
-
     }
 }
 
