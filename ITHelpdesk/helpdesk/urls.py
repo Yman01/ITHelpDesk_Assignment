@@ -1,8 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 # URL Config
 urlpatterns = [
-    path('loginpage/', views.loginpage),
-    path('signup/',views.signuppage)
+
+    # login
+    path('',views.loginpage, name='login'),
+    path("accounts/", include("django.contrib.auth.urls")),
 ]
