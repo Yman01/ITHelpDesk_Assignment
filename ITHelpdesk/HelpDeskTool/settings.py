@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'helpdesk.apps.helpdeskConfig',
     'debug_toolbar',
+    'crispy_forms'
 ]
 
 SITE_ID = 1

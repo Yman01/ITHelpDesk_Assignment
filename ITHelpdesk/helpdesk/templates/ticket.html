@@ -1,0 +1,8 @@
+<div class="container py-5">
+    <h2>Create Ticket</h2>
+<form method="POST" action="{% url 'tickets' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form}}
+    <button>submit</button>
+</form>
+</div>
