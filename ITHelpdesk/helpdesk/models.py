@@ -1,12 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 from django.forms import DateField, ModelForm, ValidationError
 
-class User(models.Model):
-    fname = models.CharField(max_length=100,verbose_name= "First Name")
-    lname = models.CharField(max_length=100,verbose_name= "Last Name")
+class User(AbstractUser):
+    username = models.CharField(max_length=100,unique=True,blank=False)
     email = models.EmailField(max_length=100)
-    password = models.CharField(max_length=100, unique=True)
-    isstaff = models.BooleanField(default=False,blank=True, editable=True)
+    
+    def __str__(self):
+            return self.username
+
 
 
 Priority_Choices = [

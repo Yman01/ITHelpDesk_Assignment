@@ -40,10 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'helpdesk.apps.helpdeskConfig',
     'debug_toolbar',
-    'crispy_forms'
+    'crispy_forms',
 ]
 
 SITE_ID = 1
+
+AUTH_USER_MODEL = 'helpdesk.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -140,4 +142,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "login"
+
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
