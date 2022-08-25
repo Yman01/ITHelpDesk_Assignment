@@ -45,4 +45,4 @@ def ticket(request):
 		if form.is_valid():
 			form.save()
 		return redirect("home")
-	return render(request,'ticket.html',{'form':ticketform})
+	return render(request,'ticket.html',{'ticket_form':ticketform})

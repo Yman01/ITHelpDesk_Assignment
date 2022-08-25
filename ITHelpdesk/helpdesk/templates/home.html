@@ -5,8 +5,15 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
+<h1> Helpdesk Ticket System </h1>
+
+
+  <h2>Hello {{ user.username }}!</h2>
   <p><a href="{% url 'logout' %}">Log Out</a></p>
+  <p><a href="{% url 'tickets'%}">Create Ticket</a></p>
+
+
+
 {% else %}
   <p>You are not logged in</p>
   <a href="{% url 'login' %}">Log In</a>
