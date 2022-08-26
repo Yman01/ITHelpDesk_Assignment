@@ -1,11 +1,11 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import login,authenticate
+from django.contrib.auth import login,authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from .models import User
-from .forms import NewUserForm, ticketform
+from .forms import NewUserForm, ticketform, profile_edit
 
 def login_request(request):
 	if request.method == "POST":
@@ -46,3 +46,17 @@ def ticket(request):
 			form.save()
 		return redirect("home")
 	return render(request,'ticket.html',{'ticket_form':ticketform})
+
+
+def view_profile(request):
+	args = {'user':request.user}
+	return render(request, 'profile.html',args)
+
+def edit_profile(request):
+	if request.POST:
+		form = profile_edit(request.POST)
+		if form.is_valid():
+			user = form.save()
+			logout(request,user)
+		return redirect ("home")
+	return render(request, 'profile_edit.html',{'profile_edit':profile_edit})

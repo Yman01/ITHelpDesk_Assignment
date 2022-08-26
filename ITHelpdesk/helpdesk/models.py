@@ -10,7 +10,6 @@ class User(AbstractUser):
             return self.username
 
 
-
 Priority_Choices = [
     ('LOW','Low'),
     ('MEDIUM','Medium'),
