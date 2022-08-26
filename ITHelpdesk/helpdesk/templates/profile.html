@@ -1,0 +1,21 @@
+
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Profile</h1>
+    <p>
+    <p> Username:    {{ user }} </p>
+    <p> First Name:   {{ user.first_name }} </p>
+    <p> Last Name:    {{ user.last_name }} </p>
+    <p> Email:   {{ user.email }} </p>
+    <p> Date Joined:   {{ user.date_joined }} </p>
+    <p> Last Login   {{ user.last_login }} </p>
+    <p> Staff:   {{ user.is_staff }} </p>
+    </p>    
+</div>
+
+{% endblock %}

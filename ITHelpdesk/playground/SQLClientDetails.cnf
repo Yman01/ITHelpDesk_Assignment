@@ -1,7 +1,0 @@
-[Client]
-name= HelpDesk
-user=Admin
-password=!!!Yman123!!!
-host=127.0.0.1
-port="6603"
-default-charecter-set=utf8

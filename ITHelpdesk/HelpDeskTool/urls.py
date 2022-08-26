@@ -15,13 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path , include
-
-import playground
-
+from django.views.generic.base import TemplateView
+from helpdesk import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('playground/',include('playground.urls')),
-    path('__debug__/', include('debug_toolbar.urls'))
+    path('helpdesk/',include('helpdesk.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
+    path('/accounts/', include('django.contrib.auth.urls')),
+    path('', TemplateView.as_view(template_name='home.html'),name='home'),
+    path("register",views.register_request, name="register"),
+    path("login", views.login_request, name="login"),
+    path("tickets",views.ticket,name='tickets'),
+    path("profile",views.view_profile,name='profile'),
+    path("profile/edit",views.edit_profile,name='edit_profile'),
 ]
+

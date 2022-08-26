@@ -1,0 +1,16 @@
+
+
+{% block content %}    
+
+{% load crispy_forms_tags %}
+
+<div class="container py-5">
+    <h2>Create Ticket</h2>
+<form method="POST" action="{% url 'tickets' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ ticket_form|crispy }}
+    <button>submit</button>
+</form>
+</div>
+
+{% endblock %}

@@ -36,9 +36,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'playground',
+    'django.contrib.sites',
+    'django.contrib.sessions',
+    'helpdesk.apps.helpdeskConfig',
     'debug_toolbar',
+    'crispy_forms',
 ]
+
+SITE_ID = 1
+
+AUTH_USER_MODEL = 'helpdesk.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,7 +69,7 @@ ROOT_URLCONF = 'HelpDeskTool.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,7 +96,6 @@ DATABASES = {
         'PASSWORD' : '!!!Yman123!!!',
         'HOST': '127.0.0.1',
         'PORT' : '6603'
-
     }
 }
 
@@ -134,3 +140,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "login"
+
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
