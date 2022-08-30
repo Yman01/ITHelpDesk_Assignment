@@ -3,8 +3,10 @@ from django.contrib.auth import login,authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import HttpResponse
+from django.template import loader
 
-from .models import User
+from .models import Ticket,User
 from .forms import NewUserForm, ticketform, profile_edit
 
 def login_request(request):
@@ -38,6 +40,16 @@ def register_request(request):
 	form = NewUserForm()
 	return render (request=request, template_name="register.html", context={"register_form":form})
 
+def getuser(request):
+
+	model = Ticket
+	form_class = ticketform
+
+	def get_form_kwargs(self):
+		kwargs = super(getuser, self).get_form_kwargs()
+		kwargs.update({'user':self.request.user})
+		return kwargs
+
 @login_required
 def ticket(request):
 	if request.POST:
@@ -47,6 +59,17 @@ def ticket(request):
 		return redirect("home")
 	return render(request,'ticket.html',{'ticket_form':ticketform})
 
+def homeview(request):
+	
+	return render(request,'home.html')
+
+def tickettable(request):	
+	data = Ticket.objects.all().values()
+	template = loader.get_template('table.html')
+	context = {
+		'data':data,
+	}
+	return HttpResponse(template.render(context,request))
 
 def view_profile(request):
 	args = {'user':request.user}

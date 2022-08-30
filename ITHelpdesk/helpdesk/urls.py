@@ -11,4 +11,6 @@ urlpatterns = [
     path("tickets",views.ticket,name='tickets'),
     path("profile/",views.view_profile,name='profile'),
     path("profile/edit",views.edit_profile,name='edit_profile'),
+    path('home/', views.homeview,name='home'),
+    path("table/",views.tickettable,name= "table")
 ]

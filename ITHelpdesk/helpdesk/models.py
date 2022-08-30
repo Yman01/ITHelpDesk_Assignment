@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.forms import DateField, ModelForm, ValidationError
+from django.forms import DateField, ModelForm
 
 class User(AbstractUser):
     username = models.CharField(max_length=100,unique=True,blank=False)
