@@ -3,8 +3,9 @@ from django.contrib.auth import login,authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
+from django.urls import reverse
 
 from .models import Ticket,User
 from .forms import NewUserForm, ticketform, profile_edit
@@ -60,16 +61,34 @@ def ticket(request):
 	return render(request,'ticket.html',{'ticket_form':ticketform})
 
 def homeview(request):
-	
-	return render(request,'home.html')
-
-def tickettable(request):	
 	data = Ticket.objects.all().values()
-	template = loader.get_template('table.html')
+	template = loader.get_template('home.html')
 	context = {
 		'data':data,
 	}
 	return HttpResponse(template.render(context,request))
+
+
+def updateticket(request,id):
+	thisticket = Ticket.objects.get(id=id)
+	template = loader.get_template('updateticket.html')
+	context = {
+		'thisticket':thisticket,
+	}
+	return HttpResponse(template.render(context,request))
+
+def updaterecord(request,id):
+	title = request.POST['title']
+	subject = request.POST['subject']
+	priority = request.POST['priority']
+	description = request.POST['description']
+	thisticket = Ticket.objects.get(id=id)
+	thisticket.title = title
+	thisticket.subject = subject
+	thisticket.priority = priority
+	thisticket.description = description
+	thisticket.save()
+	return HttpResponseRedirect(reverse('table'))
 
 def view_profile(request):
 	args = {'user':request.user}

@@ -17,13 +17,15 @@ class profile_edit(UserChangeForm):
 		fields = ("username","first_name","last_name","email",)
 
 
+
 class ticketform(ModelForm):
 
 	title = forms.TextInput()
 	subject = forms.TextInput()
 	priority = forms.ChoiceField(choices=Priority_Choices)
 	description = forms.CharField(widget=forms.Textarea)
-	submittedby = forms.HiddenInput()
+	submittedby = forms.ModelChoiceField(queryset= User.objects.filter())
+	print(User.objects.all())
 
 	class Meta:
 		model = Ticket
