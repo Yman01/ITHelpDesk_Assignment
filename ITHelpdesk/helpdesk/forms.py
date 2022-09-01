@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.forms import ModelForm
-from .models import Priority_Choices,Ticket,User
+
+from .models import Ticket,User
 
 
 
@@ -18,16 +19,17 @@ class profile_edit(UserChangeForm):
 
 
 
-class ticketform(ModelForm):
+class ticketform(forms.ModelForm):
 
-	title = forms.TextInput()
-	subject = forms.TextInput()
-	priority = forms.ChoiceField(choices=Priority_Choices)
 	description = forms.CharField(widget=forms.Textarea)
-	submittedby = forms.ModelChoiceField(queryset= User.objects.filter())
-	print(User.objects.all())
+	submittedby = forms.ModelChoiceField(queryset= User.objects.exclude(username = User.is_authenticated))
 
-	class Meta:
+	class Meta():
 		model = Ticket
-		fields = ['title','subject','priority','description','submittedby']
+		fields =['title','subject','priority','description','submittedby']
+		exclude = ['submittedby']
+	# def __init__(self,*args,**kwargs):
+	# 	super(ticketform,self).__init__(*args,**kwargs)
+	# 	thisuser = User.is_authenticated
+	# 	self.fields['submittedby'].queryset = User.objects.filter(username = thisuser)
 

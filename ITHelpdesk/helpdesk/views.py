@@ -41,23 +41,17 @@ def register_request(request):
 	form = NewUserForm()
 	return render (request=request, template_name="register.html", context={"register_form":form})
 
-def getuser(request):
-
-	model = Ticket
-	form_class = ticketform
-
-	def get_form_kwargs(self):
-		kwargs = super(getuser, self).get_form_kwargs()
-		kwargs.update({'user':self.request.user})
-		return kwargs
-
 @login_required
 def ticket(request):
+
 	if request.POST:
-		form = ticketform(request.POST)
+		form = ticketform(initial={'submittedby':request.user})
 		if form.is_valid():
-			form.save()
-		return redirect("home")
+			form.save
+			return redirect("/")			
+	else:
+		form = ticketform()
+		print(request.user)
 	return render(request,'ticket.html',{'ticket_form':ticketform})
 
 def homeview(request):
