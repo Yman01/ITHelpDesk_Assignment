@@ -31,6 +31,7 @@ urlpatterns = [
     path("profile",views.view_profile,name='profile'),
     path("profile/edit",views.edit_profile,name='edit_profile'),
     path('update/<int:id>', views.updateticket, name='update'),
-    path('update/updaterecord/<int:id>', views.updaterecord, name='updaterecord')
+    path('update/updaterecord/<int:id>', views.updaterecord, name='updaterecord'),
+    path('delete/<int:id>', views.delete, name='delete')
 ]
 

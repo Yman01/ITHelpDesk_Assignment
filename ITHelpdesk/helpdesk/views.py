@@ -88,7 +88,12 @@ def updaterecord(request,id):
 	thisticket.priority = priority
 	thisticket.description = description
 	thisticket.save()
-	return HttpResponseRedirect(reverse('table'))
+	return HttpResponseRedirect(reverse('home'))
+
+def delete(request,id):
+	thisticket = Ticket.objects.get(id=id)
+	thisticket.delete()
+	return HttpResponseRedirect(reverse('home'))
 
 def view_profile(request):
 	args = {'user':request.user}

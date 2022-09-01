@@ -13,5 +13,6 @@ urlpatterns = [
     path("profile/edit",views.edit_profile,name='edit_profile'),
     path('', views.homeview,name='home'),
     path('update/<int:id>', views.updateticket, name='update'),
-    path('update/updaterecord/<int:id>', views.updaterecord, name='updaterecord')
+    path('update/updaterecord/<int:id>', views.updaterecord, name='updaterecord'),
+    path('delete/<int:id>', views.delete, name='delete')
 ]
