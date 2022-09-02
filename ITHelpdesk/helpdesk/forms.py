@@ -17,17 +17,27 @@ class profile_edit(UserChangeForm):
 		model = User
 		fields = ("username","first_name","last_name","email",)
 
-
+Priority_Choices = [
+    ('LOW','Low'),
+    ('MEDIUM','Medium'),
+    ('HIGH','High'),
+    ('IMMEDIATE','Immediate'),
+]
 
 class ticketform(forms.ModelForm):
-
 	description = forms.CharField(widget=forms.Textarea)
-	submittedby = forms.ModelChoiceField(queryset= User.objects.exclude(username = User.is_authenticated))
+	title= forms.CharField(max_length=100)
+	subject = forms.CharField(max_length=100)
+	priority = forms.ChoiceField(choices=Priority_Choices)
+	# datecreated = forms.DateTimeField(auto_now_add= True)
+	submittedby = forms.CharField(max_length=10000,widget=forms.HiddenInput)
+	# submittedby = forms.CharField(widget=forms.TextInput(attrs=DEFAULT_ATR))
+	# submittedby = forms.CharField(initial='ABCD')
 
 	class Meta():
 		model = Ticket
 		fields =['title','subject','priority','description','submittedby']
-		exclude = ['submittedby']
+		# exclude = ['submittedby']
 	# def __init__(self,*args,**kwargs):
 	# 	super(ticketform,self).__init__(*args,**kwargs)
 	# 	thisuser = User.is_authenticated

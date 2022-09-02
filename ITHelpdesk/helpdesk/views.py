@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import login,authenticate, logout
+from django.contrib.auth import login,authenticate, logout, get_user_model, get_user
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -43,16 +43,25 @@ def register_request(request):
 
 @login_required
 def ticket(request):
-
+	# args = {'user':request.user}
+	print(request)
 	if request.POST:
-		form = ticketform(initial={'submittedby':request.user})
+		print(get_user(request))
+		request.POST = request.POST.copy()
+		request.POST.__setitem__('submittedby',get_user(request))
+		# print(request.POST)
+		form = ticketform(request.POST)
+		# form.submittedby.initial = get_user_model()
+		# form.submittedby.initial="abc"
 		if form.is_valid():
-			form.save
-			return redirect("/")			
+				# form.instance.submittedby = request.user
+				form.save()
+				return redirect("home")			
 	else:
-		form = ticketform()
-		print(request.user)
-	return render(request,'ticket.html',{'ticket_form':ticketform})
+		form = ticketform(initial={'submittedby':get_user(request).get_username()})
+		print(form)
+		# form.submittedby.initial="abc"
+		return render(request,'ticket.html',{'ticket_form':ticketform})
 
 def homeview(request):
 	data = Ticket.objects.all().values()
