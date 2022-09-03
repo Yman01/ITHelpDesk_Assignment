@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-AUTH_USER_MODEL = 'helpdesk.User'
+# AUTH_USER_MODEL = 'helpdesk.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -153,4 +153,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "login"
 
-AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+# AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)

@@ -6,8 +6,9 @@ from django.contrib import messages
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
+from django import forms
 
-from .models import Ticket,User
+from .models import Ticket
 from .forms import NewUserForm, ticketform, profile_edit
 
 def login_request(request):
@@ -43,25 +44,21 @@ def register_request(request):
 
 @login_required
 def ticket(request):
-	# args = {'user':request.user}
-	print(request)
 	if request.POST:
-		print(get_user(request))
-		request.POST = request.POST.copy()
-		request.POST.__setitem__('submittedby',get_user(request))
-		# print(request.POST)
+		
 		form = ticketform(request.POST)
-		# form.submittedby.initial = get_user_model()
-		# form.submittedby.initial="abc"
+		form.fields['submittedby'].initial = request.user.id
+		form.fields['submittedby'].disabled = True
 		if form.is_valid():
-				# form.instance.submittedby = request.user
 				form.save()
 				return redirect("home")			
 	else:
-		form = ticketform(initial={'submittedby':get_user(request).get_username()})
-		print(form)
-		# form.submittedby.initial="abc"
-		return render(request,'ticket.html',{'ticket_form':ticketform})
+		form = ticketform()
+		form.fields['submittedby'].initial = request.user.id
+		form.fields['submittedby'].disabled = True
+		# form.fields['submittedby'].widget = forms.HiddenInput()
+		print(form.fields['submittedby'].initial)
+		return render(request,'ticket.html',{'ticket_form':form})
 
 def homeview(request):
 	data = Ticket.objects.all().values()
