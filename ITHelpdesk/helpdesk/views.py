@@ -56,7 +56,7 @@ def ticket(request):
 		form = ticketform()
 		form.fields['submittedby'].initial = request.user.id
 		form.fields['submittedby'].disabled = True
-		# form.fields['submittedby'].widget = forms.HiddenInput()
+		form.fields['submittedby'].widget = forms.HiddenInput()
 		print(form.fields['submittedby'].initial)
 		return render(request,'ticket.html',{'ticket_form':form})
 
