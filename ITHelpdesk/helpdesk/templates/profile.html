@@ -16,7 +16,8 @@
     <p> Last Login   {{ user.last_login }} </p>
     <p> Staff:   {{ user.is_staff }} </p>
     </p>
-    <p><a href="{% url 'profile'%}">Edit</a></p>
+    <p><a href= "profile/edit/{{ user.id }}">Edit</a></p>
+    <p><a href= "profile/delete/{{ user.id }}">DELETE ACCOUNT</a></p>
     <p><a href="{% url 'home'%}">Return</a></p>    
 </div>
 

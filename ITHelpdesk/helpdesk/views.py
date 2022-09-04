@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import login,authenticate, logout, get_user_model, get_user
+from django.contrib.auth import login,authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -8,7 +8,7 @@ from django.template import loader
 from django.urls import reverse
 from django import forms
 
-from .models import Ticket
+from .models import Ticket,User
 from .forms import NewUserForm, ticketform, profile_edit
 
 def login_request(request):
@@ -69,6 +69,27 @@ def homeview(request):
 	return HttpResponse(template.render(context,request))
 
 
+def updateprofile(request,id):
+    user = User.objects.get(id=id)
+    template = loader.get_template('updateprofile.html')
+    context = {
+		'user':user,
+	}
+    return HttpResponse(template.render(context,request))
+
+def updateprofilerecord(request,id):
+    username = request.POST['username']
+    firstname = request.POST['firstname']
+    lastname = request.POST['lastname']
+    email = request.POST['email']
+    thisuser = User.objects.get(id=id)
+    thisuser.username = username
+    thisuser.firstname = firstname
+    thisuser.lastname = lastname
+    thisuser.email = email
+    thisuser.save()
+    return HttpResponseRedirect(reverse('home'))
+
 def updateticket(request,id):
 	thisticket = Ticket.objects.get(id=id)
 	template = loader.get_template('updateticket.html')
@@ -99,11 +120,7 @@ def view_profile(request):
 	args = {'user':request.user}
 	return render(request, 'profile.html',args)
 
-def edit_profile(request):
-	if request.POST:
-		form = profile_edit(request.POST)
-		if form.is_valid():
-			user = form.save()
-			logout(request,user)
-		return redirect ("home")
-	return render(request, 'profile_edit.html',{'profile_edit':profile_edit})
+def deleteprofile(request,id):
+    thisprofile = User.objects.get(id=id)
+    thisprofile.delete()
+    return HttpResponseRedirect(reverse('/'))

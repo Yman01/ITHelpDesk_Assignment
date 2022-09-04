@@ -9,7 +9,6 @@
 <form method="POST" action="{% url 'tickets' %}">
     {% csrf_token %}
     {{ ticket_form|crispy }}
-    {% comment %} {{ ticket_form.submittedby|crispy }} {% endcomment %}
     <br>
     <input type="submit" value="Submit">
 </form>

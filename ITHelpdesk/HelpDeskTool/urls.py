@@ -29,9 +29,11 @@ urlpatterns = [
     path("login", views.login_request, name="login"),
     path("tickets",views.ticket,name='tickets'),
     path("profile",views.view_profile,name='profile'),
-    path("profile/edit",views.edit_profile,name='edit_profile'),
     path('update/<int:id>', views.updateticket, name='update'),
     path('update/updaterecord/<int:id>', views.updaterecord, name='updaterecord'),
-    path('delete/<int:id>', views.delete, name='delete')
+    path('delete/<int:id>', views.delete, name='delete'),
+    path('profile/edit/<int:id>', views.updateprofile, name='update'),
+    path('profile/edit/updateprofilerecord/<int:id>', views.updateprofilerecord, name='updateprofilerecord'),
+    path('profile/delete/<int:id>', views.deleteprofile, name='delete')
 ]
 
