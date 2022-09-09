@@ -1,0 +1,19 @@
+<h1>Update Ticket</h1>
+{% load crispy_forms_tags %}
+
+<form action="updaterecord/{{ thisticket.id }}" method="post">
+{% csrf_token %}
+Title: <br><input name="title" value="{{ thisticket.title }}">
+<br><br>
+Subject: <br><input name="subject" value="{{ thisticket.subject }}">
+<br><br>
+Priority:<br> <select name="priority" vlaue="{{ thisticket.priority }}">
+            <option value="LOW">Low</option>
+            <option value="MED">Med</option>
+            <option value="HIGH">High</option>
+            <option value="IMMEDIATE">Immediate</option></select>
+<br><br>
+Description:<br> <input type="text" name="description" value=  "{{ thisticket.description }}">
+<br><br>
+<input type="submit" value="Submit">
+</form>

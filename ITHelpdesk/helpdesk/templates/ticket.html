@@ -6,11 +6,15 @@
 
 <div class="container py-5">
     <h2>Create Ticket</h2>
-<form method="POST" action="{% url 'tickets' %}" enctype="multipart/form-data">
+<form method="POST" action="{% url 'tickets' %}">
     {% csrf_token %}
     {{ ticket_form|crispy }}
-    <button>submit</button>
+    <br>
+    <input type="submit" value="Submit">
 </form>
+
+<p><a href="{% url 'home'%}">cancel</a></p>
+
 </div>
 
 {% endblock %}

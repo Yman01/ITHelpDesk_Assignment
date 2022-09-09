@@ -24,11 +24,16 @@ urlpatterns = [
     path('helpdesk/',include('helpdesk.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
     path('/accounts/', include('django.contrib.auth.urls')),
-    path('', TemplateView.as_view(template_name='home.html'),name='home'),
+    path('', views.homeview,name='home'),
     path("register",views.register_request, name="register"),
     path("login", views.login_request, name="login"),
     path("tickets",views.ticket,name='tickets'),
     path("profile",views.view_profile,name='profile'),
-    path("profile/edit",views.edit_profile,name='edit_profile'),
+    path('update/<int:id>', views.updateticket, name='update'),
+    path('update/updaterecord/<int:id>', views.updaterecord, name='updaterecord'),
+    path('delete/<int:id>', views.delete, name='delete'),
+    path('profile/edit/<int:id>', views.updateprofile, name='update'),
+    path('profile/edit/updateprofilerecord/<int:id>', views.updateprofilerecord, name='updateprofilerecord'),
+    path('profile/delete/<int:id>', views.deleteprofile, name='delete')
 ]
 

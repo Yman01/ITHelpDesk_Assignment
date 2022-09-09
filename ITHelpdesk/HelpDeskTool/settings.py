@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-AUTH_USER_MODEL = 'helpdesk.User'
+# AUTH_USER_MODEL = 'helpdesk.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,13 +89,22 @@ WSGI_APPLICATION = 'HelpDeskTool.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'HelpDesk',
+    #     'USER': 'Admin',
+    #     'PASSWORD' : '!!!Yman123!!!',
+    #     'HOST': '127.0.0.1',
+    #     'PORT' : '6603'
+    # }
+    
+        'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'HelpDesk',
-        'USER': 'Admin',
-        'PASSWORD' : '!!!Yman123!!!',
+        'USER': 'root',
+        'PASSWORD' : 'Yman123!!!',
         'HOST': '127.0.0.1',
-        'PORT' : '6603'
+        'PORT' : '3306'
     }
 }
 
@@ -144,4 +153,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "login"
 
-AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
+# AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
