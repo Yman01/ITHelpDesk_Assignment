@@ -30,7 +30,7 @@
                 "sha256:ca54ebedfcbc60d191391efbf02ba68fb52165b8bf6ccd6fe71f098cac1fe59e"
             ],
             "index": "pypi",
-            "version": "==4.0.6"
+            "version": ">=4.0.7"
         },
         "django-debug-toolbar": {
             "hashes": [

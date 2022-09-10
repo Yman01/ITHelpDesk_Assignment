@@ -1,6 +1,5 @@
 from django.test import TestCase
 from helpdesk.models import Ticket,User
-# Create your tests here.
 
 class TicketTestCase(TestCase):
     def setUp(self):
@@ -23,7 +22,7 @@ class TicketTestCase(TestCase):
         
         self.assertEqual(TEST1._meta.get_field('title').max_length,  100)
         self.assertEqual(TEST1._meta.get_field('subject').max_length,  100)
-        self.assertEqual(TEST1._meta.get_field('priority').max_length,  9)
+        self.assertEqual(TEST1._meta.get_field('priority').max_length,  10)
         self.assertEqual(TEST1._meta.get_field('description').max_length, 10000)
 
     

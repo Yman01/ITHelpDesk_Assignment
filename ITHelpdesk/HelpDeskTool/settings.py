@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+)og*t!t=sc(=(+yh!#wevwr8klwwt3(27_7kj#0#bl3#@#@sj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,8 +44,6 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
-
-# AUTH_USER_MODEL = 'helpdesk.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -89,25 +87,24 @@ WSGI_APPLICATION = 'HelpDeskTool.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'HelpDesk',
-    #     'USER': 'Admin',
-    #     'PASSWORD' : '!!!Yman123!!!',
-    #     'HOST': '127.0.0.1',
-    #     'PORT' : '6603'
-    # }
-    
-        'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'HelpDesk',
         'USER': 'root',
-        'PASSWORD' : 'Yman123!!!',
+        'PASSWORD' : '9vs7o32xvQeiKvefo6eB',
         'HOST': '127.0.0.1',
-        'PORT' : '3306'
+        'PORT' : '6603'
     }
 }
-
+    
+    #     'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'HelpDesk',
+    #     'USER': 'root',
+    #     'PASSWORD' : 'Yman123!!!',
+    #     'HOST': '127.0.0.1',
+    #     'PORT' : '3306'
+    # }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
