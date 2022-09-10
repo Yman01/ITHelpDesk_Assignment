@@ -123,4 +123,4 @@ def view_profile(request):
 def deleteprofile(request,id):
     thisprofile = User.objects.get(id=id)
     thisprofile.delete()
-    return HttpResponseRedirect(reverse('/'))
+    return HttpResponseRedirect(reverse('home'))
