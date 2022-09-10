@@ -11,7 +11,7 @@ Priority_Choices = [
 class Ticket(models.Model):
     title = models.CharField(max_length=100)
     subject = models.CharField(max_length=100)
-    priority = models.CharField(max_length= 9, choices=Priority_Choices)
+    priority = models.CharField(max_length= 10, choices=Priority_Choices)
     datecreated = models.DateTimeField(auto_now_add= True)
     description = models.CharField(max_length=10000)
     submittedby = models.ForeignKey(User, on_delete=models.CASCADE)
